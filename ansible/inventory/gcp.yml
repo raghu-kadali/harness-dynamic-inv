@@ -4,7 +4,7 @@ projects:
   - kubernetes-477004
 
 auth_kind: serviceaccount
-service_account_file: gcp-sa.json
+service_account_file:  kubernetes-477004-041b7123589d.json
 
 groups:
   web: "'web' in labels.role"
