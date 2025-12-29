@@ -61,30 +61,13 @@ pipeline:
                       type: Inline
                       spec:
                         script: |
-                          #!/bin/bash
-                          set -e
+                          echo "Running on:"
+                          hostname
+                          whoami
+                          cat /etc/os-release
 
-                          echo "===== STEP 1: Update system ====="
-                          apt-get update -y
-
-                          echo "===== STEP 2: Install Ansible ====="
-                          apt-get install -y ansible
-
-                          echo "===== STEP 3: Verify repo structure ====="
-                          pwd
-                          ls
-
-                          echo "===== STEP 4: Go to ansible directory ====="
-                          cd ansible
-                          ls
-
-                          echo "===== STEP 5: Test dynamic inventory (NO SSH) ====="
-                          ansible-inventory -i inventory/gcp.yml --graph
-
-                          echo "===== STEP 6: Install Apache using Ansible ====="
-                          ansible-playbook -i inventory/gcp.yml playbooks/install-apache.yml
-
-                          echo "===== DONE: Apache installation completed ====="
+                          sudo apt-get update -y
+                          sudo apt-get install -y apache2
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
