@@ -42,3 +42,29 @@ pipeline:
                   spec:
                     command: apply
         tags: {}
+    - stage:
+        name: ansible
+        identifier: ansible
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          cd ansible
+                          ansible-inventory -i inventory/gcp.yml --graph
+                          ansible-playbook -i inventory/gcp.yml playbooks/install-apache.yml
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
