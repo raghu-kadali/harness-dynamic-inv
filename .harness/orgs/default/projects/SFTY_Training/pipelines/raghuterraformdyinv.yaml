@@ -41,6 +41,13 @@ pipeline:
                   timeout: 10m
                   spec:
                     command: apply
+              - step:
+                  type: IACMTerraformPlugin
+                  name: IACMTerraformPlugin_4
+                  identifier: IACMTerraformPlugin_4
+                  spec:
+                    command: destroy
+                  timeout: 1h
         tags: {}
     - stage:
         name: an
